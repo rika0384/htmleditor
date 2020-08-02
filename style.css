@@ -1,0 +1,70 @@
+*{
+	font-family: Meiryo;
+	text-align: center;
+	font-size:20px;
+	margin: 0;
+	padding: 0;
+}
+
+#liveeditor{
+	margin: 10px;
+}
+
+.bottomspace{
+	margin-bottom: 20px;
+}
+
+.editorwrapper{
+
+}
+.tabtitle{
+	background-color:Black;
+	color:white;
+	padding: 3px;
+	width: auto;
+}
+.editor{
+	float: left;
+	padding: 0;
+}
+
+.preview{
+	float: right;
+	background-color: DDDDDD;
+	padding: 0;
+}
+
+.procedure{
+	background-color: white;
+
+	clear: both;
+}
+
+.button{
+	border: 1px solid plum;
+	color: black;
+	line-height: 50px;
+	width: 200px;
+	margin: 20px;
+	background-color: aliceblue;
+	padding: 5px 10px 5px 10px;
+	transition: 0.3s;
+}
+
+.button:hover{
+	border: 1px solid mediumpurple;
+	color: white;
+	transition: 0.3s;
+	background-color: mediumpurple;
+}
+
+.footer{
+	font-size:6px;
+	font-weight: 100;
+	position: fixed;
+	color: white;
+	background-color: #444444;
+	width: 100%;
+	padding: 5px 10px 5px 10px;
+	bottom: 0;
+}

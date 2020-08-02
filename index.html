@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>HTML Editor</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link type="text/css" href="style.css" rel="stylesheet">
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.slim.min.js"></script>
+        <script>
+            $(function() {
+                $('body').keyup(function() {
+                    $('#livepreview').html($('#liveeditor').val());
+                });
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <div style="editorwrapper container-fluid">
+			<div class="row">
+	            <div class="editor col-sm-6">
+	                <div class="tabtitle">Editor</div>
+	                <form name="js">
+	                    <p>ページタイトル(ファイル名にも適用されます)</p>
+	                    <input class="bottomspace" type="text" name="title" value="index"><br>
+
+	                    <p>ページの内容(htmlタグが使えます)</p>
+	                    <textarea id="liveeditor" name="htmlbody" class="auto-resize"></textarea>
+	                </form>
+	            </div>
+
+	            <div class="preview col-sm-6">
+	                <div class="tabtitle">Preview</div>
+	                <div id="livepreview"></div>
+	            </div>
+			</div>
+		</div>
+		<div class="procedure">
+			<p style="background-color:Black; color:white; height:30px;"></p>
+			<button class="button" onclick="downloadfile()">Download</button>
+		</div>
+
+
+        <div class="footer">
+
+        </div>
+
+        <script type="text/javascript">
+            function downloadfile(){
+                //BOM
+                var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+
+                //各フォームの値を取得
+                var title = document.js.title.value;
+                var htmlbody = document.js.htmlbody.value;
+
+                //htmlの内容を変数に格納
+                var html ="<html><head><title>" + title + "</title></head><body>" + htmlbody + "</body></html>"
+
+                //blobとしてhtmlファイルを生成
+                var blob = new Blob([bom, html],{type: "text/html;"})
+
+                //a要素を作成してクリックイベント実行
+                var a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.target = '_blank';
+                a.download = title + '.html';
+                a.click();
+            }
+			$('textarea.auto-resize')
+			.on('change keyup keydown paste cut', function(){
+				if ($(this).outerHeight() > this.scrollHeight){
+					$(this).height(2)
+				}
+				while ($(this).outerHeight() < this.scrollHeight+1){
+					$(this).height($(this).height() + 2)
+				}
+			});
+
+        </script>
+    </body>
+</html>
